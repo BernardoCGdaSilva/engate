@@ -1,6 +1,6 @@
 #' Nomes Classificação Brasileira de Ocupação
 #' @encoding UTF-8
-#' @param tabela A tabela para adicionar os nomes das CBOs
+#' @param tabela Data.frame: a tabela para adicionar os nomes das CBOs
 #' @param campo Caracter: a coluna com os códigos CBO
 #'
 #' @return Adiciona uma coluna com as descrições das CBOs em uma tabela que possui apenas os códigos.

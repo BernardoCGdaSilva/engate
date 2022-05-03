@@ -8,7 +8,7 @@
 nomes_cbo(tabela, campo)
 }
 \arguments{
-\item{tabela}{A tabela para adicionar os nomes das CBOs}
+\item{tabela}{Data.frame: a tabela para adicionar os nomes das CBOs}
 
 \item{campo}{Caracter: a coluna com os códigos CBO}
 }

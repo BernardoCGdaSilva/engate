@@ -6,10 +6,10 @@
 <!-- badges: start -->
 <!-- badges: end -->
 
-Engate is a package which aims to help data manipulation of brazilian
+engate is a package which aims to help data manipulation of brazilian
 public data. It consists of two sets of functions - nomes and codigos -
-that match a code column with its description (in the first case) or a
-related code (in the second).
+that match a index column with its description (in the first case) or a
+related index (in the second).
 
 ## Installation
 
@@ -30,7 +30,7 @@ library(engate)
 df1 <- data.frame(col1 = c("010105", "515220", "992115"))
 df2 <- nomes_cbo(df1,"col1")
 df2
-#>     col1                                       nome
+#>     col1                                  nomes_cbo
 #> 1 010105             Oficial General da Aeronautica
 #> 2 515220 Auxiliar de Laboratorio de Imunobiologicos
 #> 3 992115                                Borracheiro

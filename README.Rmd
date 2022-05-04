@@ -18,7 +18,7 @@ knitr::opts_chunk$set(
 <!-- badges: start -->
 <!-- badges: end -->
 
-Engate is a package which aims to help data manipulation of brazilian public data. It consists of two sets of functions - nomes and codigos - that match a code column with its description (in the first case) or a related code (in the second).
+engate is a package which aims to help data manipulation of brazilian public data. It consists of two sets of functions - nomes and codigos - that match a index column with its description (in the first case) or a related index (in the second).
 
 ## Installation
 

@@ -1,10 +1,11 @@
 Package: engate
-Title: What the Package Does (One Line, Title Case)
+Title: Attach description to brazilian public data indexes
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
+    person("Bernardo", "Silva", , "bernardocgdasilva@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+Description: Two sets of functions - nomes and codigos - that match a index column with its 
+    description (in the first case) or a related index (in the second) in brazilian public data.
 License: MIT + file LICENSE
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
@@ -13,5 +14,7 @@ Depends:
     R (>= 2.10)
 Imports: 
     dplyr,
-    magrittr
-LazyData: true
+    magrittr,
+    rlang
+URL: https://github.com/BernardoCGdaSilva/engate
+BugReports: https://github.com/BernardoCGdaSilva/engate/issues

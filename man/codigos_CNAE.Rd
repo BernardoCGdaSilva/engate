@@ -5,12 +5,12 @@
 \alias{codigos_CNAE}
 \title{Códigos Classificação Nacional de Atividades Econômicas}
 \usage{
-codigos_CNAE(tabela, subclasse, nivel, add_nomes = F)
+codigos_CNAE(tabela, campo, nivel, add_nomes = F)
 }
 \arguments{
 \item{tabela}{Data.frame: a tabela para adicionar outros níveis CNAE}
 
-\item{subclasse}{Caracter: a coluna com os códigos subclasse}
+\item{campo}{Caracter: a coluna com os códigos subclasse}
 
 \item{nivel}{Caracter: o nível CNAE desejado. Deve ser "Seção", "Divisão", "Grupo" ou "Classe"}
 

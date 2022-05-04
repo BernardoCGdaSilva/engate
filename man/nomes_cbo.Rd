@@ -22,6 +22,7 @@ Nomes Classificação Brasileira de Ocupação
 df1 <- data.frame(col1 = c("010105", "515220", "992115"))
 df2 <- nomes_cbo(df1, "col1")
 df2
+
 df3 <- data.frame(col1 = c(010105, 515220, 992115))
 df4 <- nomes_cbo(df3, "col1")
 df4

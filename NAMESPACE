@@ -3,4 +3,5 @@
 export("%>%")
 export(codigos_CNAE)
 export(nomes_cbo)
+export(nomes_cnae_subclasse)
 importFrom(magrittr,"%>%")

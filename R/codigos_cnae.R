@@ -27,7 +27,12 @@ codigos_cnae <- function(tabela, campo, nivel, add_nomes = F) {
          stop("Por favor escolha um nivel CNAE acima de subclasse.")})
 
   # nome a partir do nivel escolhido
-  vetor_nome <- paste0("codigo_cnae_", nivel)
+    if (nivel == "se\u00e7\u00e3o") {
+    vetor_nivel_ascii <- "secao"
+  } else if(nivel == "divis\u00e3o") {
+    vetor_nivel_ascii <- "divisao"
+  } else{vetor_nivel_ascii <- paste0(nivel)}
+  vetor_nome <- paste0("codigo_cnae_", vetor_nivel_ascii)
   # tamanho do codigo do nivel desejado
   vetor_amplitude <- ifelse(nivel == "classe", 5, ifelse(nivel == "grupo", 3, 2))
   # quote o campo
@@ -67,10 +72,10 @@ codigos_cnae <- function(tabela, campo, nivel, add_nomes = F) {
 
   # Adiciona nomes
 
-  #if (add_nomes == T) {
-  #  func_nomes <- paste0("nomes_cnae_", nivel)
-  #  x <- do.call(func_nomes, args = c(x,vetor_nome))
-  #}
+  if (add_nomes == T) {
+    func_nomes <- paste0("nomes_cnae_", vetor_nivel_ascii)
+    x <- do.call(func_nomes, args = c(x,vetor_nome))
+  }
 
   return(x)
 }
@@ -78,7 +83,20 @@ codigos_cnae <- function(tabela, campo, nivel, add_nomes = F) {
 
 
 df3 <- data.frame(col1 = c("9609201", "0111302"))
-df4 <- codigos_cnae(df3, col1, "seção", add_nomes = T)
+df4 <- codigos_cnae(df3, col1, "classe", add_nomes = F)
 
-nivel <- "classe"
+nivel <- "seção"
+
+df5 <- do.call(nomes_cnae_classe, args = c(df4,codigo_cnae_classe))
+
+df6 <- nomes_cnae_classe(df4, codigo_cnae_classe)
+
+# nome a partir do nivel escolhido
+if (nivel == "se\u00e7\u00e3o") {
+  vetor_nivel_ascii <- "secao"
+} else if(nivel == "divis\u00e3o") {
+  vetor_nivel_ascii <- "divisao"
+} else{vetor_nivel_ascii <- paste0(nivel)}
+vetor_nome <- paste0("codigo_cnae_", vetor_nivel_ascii)
+
 

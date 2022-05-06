@@ -2,8 +2,10 @@
 #'
 #' @encoding UTF-8
 #'
-#' @param tabela Data.frame: a tabela para adicionar os nomes das classes da CNAE
-#' @param campo Caracter: a coluna com os códigos das classes da CNAE
+#' @description Procura em dataframe por coluna com códigos CNAE classe e adiciona uma coluna com os nomes relacionados.
+#'
+#' @param tabela Dataframe: a tabela para adicionar os nomes das classes da CNAE
+#' @param campo Caractere: a coluna com os códigos das classes da CNAE
 #'
 #' @return Adiciona uma coluna com as descrições das classes da CNAE em uma tabela que possui apenas os códigos.
 #' @export
@@ -23,7 +25,7 @@ nomes_cnae_classe <- function(tabela, campo) {
 
   # caso em que as classes são número
   if (is.numeric(teste)) {
-    x <- dplyr::mutate(tabela, cod_caracter = sprintf(sprintf("%05d", teste))) %>%
+    x <- dplyr::mutate(tabela, cod_caracter = sprintf("%05d", teste)) %>%
       dplyr::left_join(suporte_cnae_classe, by = rlang::set_names("cod", "cod_caracter")) %>%
       subset(select = -cod_caracter)
 

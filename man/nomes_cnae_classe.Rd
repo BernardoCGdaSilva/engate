@@ -8,15 +8,15 @@
 nomes_cnae_classe(tabela, campo)
 }
 \arguments{
-\item{tabela}{Data.frame: a tabela para adicionar os nomes das classes da CNAE}
+\item{tabela}{Dataframe: a tabela para adicionar os nomes das classes da CNAE}
 
-\item{campo}{Caracter: a coluna com os códigos das classes da CNAE}
+\item{campo}{Caractere: a coluna com os códigos das classes da CNAE}
 }
 \value{
 Adiciona uma coluna com as descrições das classes da CNAE em uma tabela que possui apenas os códigos.
 }
 \description{
-Nomes Classificação Nacional de Atividades Econômicas - Classe
+Procura em dataframe por coluna com códigos CNAE classe e adiciona uma coluna com os nomes relacionados.
 }
 \examples{
 df1 <- data.frame(codigos_cnae_classes = c("01113", "45200", "99008"))

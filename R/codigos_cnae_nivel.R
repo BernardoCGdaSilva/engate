@@ -2,9 +2,12 @@
 #'
 #' @encoding UTF-8
 #'
+#' @description Procura em dataframe por coluna com os códigos da CNAE subclasse e adiciona coluna extra contendo
+#'     os códigos CNAE equivalentes em nível superior (classe, grupo, divisão ou seção), conforme escolha.
+#'
 #' @param tabela Dataframe: a tabela para adicionar outros níveis CNAE.
-#' @param campo Caracter: a coluna com os códigos subclasse da CNAE.
-#' @param nivel Caracter: o nível CNAE desejado. Deve ser "seção", "divisão", "grupo" ou "classe".
+#' @param campo Caractere: a coluna com os códigos subclasse da CNAE.
+#' @param nivel Caractere: o nível CNAE desejado. Deve ser "seção", "divisão", "grupo" ou "classe".
 #' @param add_nomes Logical: deseja adicionar uma coluna com os nomes?
 #'
 #' @return Uma nova coluna com os códigos CNAE em nível mais agrupados a partir de subclasse.
@@ -12,13 +15,13 @@
 #'
 #' @examples
 #' df1 <- data.frame(cnae_subclasse = c(9609201, 111302))
-#' df2 <- codigos_cnae_niveis(df1, cnae_subclasse, "seção")
+#' df2 <- codigos_cnae_nivel(df1, cnae_subclasse, "seção")
 #' df2
 #'
 #' df3 <- data.frame(cnae_subclasse = c("9609201", "0111302"))
-#' df4 <- codigos_cnae_niveis(df3, cnae_subclasse, "classe", add_nomes = TRUE)
+#' df4 <- codigos_cnae_nivel(df3, cnae_subclasse, "classe", add_nomes = TRUE)
 #' df4
-codigos_cnae_niveis <- function(tabela, campo, nivel, add_nomes = F) {
+codigos_cnae_nivel <- function(tabela, campo, nivel, add_nomes = F) {
 
   # verifica o nivel escolhido
   try(if(!(nivel %in% list("classe", "grupo", "divis\u00e3o","se\u00e7\u00e3o"))){

@@ -27,6 +27,10 @@ suporte_cnae_secao <- readxl::read_xlsx("data-raw/Suporte.xlsx", col_types = c("
 tradutor_cnae_secao_divisao <- readxl::read_xlsx("data-raw/Suporte.xlsx", col_types = c("numeric", "text"), sheet = "CNAE_secao_divisao")
 tradutor_cnae_secao_divisao$cnae_divisao <- sprintf("%02d", tradutor_cnae_secao_divisao$cnae_divisao)
 
+# suporte municípios
+suporte_municipios <- readxl::read_xlsx("data-raw/Suporte.xlsx", col_types = c("text", "text"), sheet = "Municipios")
+suporte_municipios$cod <- substr(suporte_municipios$cod,1,6)
+
 usethis::use_data(suporte_cbo,
   suporte_cnae_subclasse,
   suporte_cnae_classe,
@@ -34,6 +38,7 @@ usethis::use_data(suporte_cbo,
   suporte_cnae_divisao,
   suporte_cnae_secao,
   tradutor_cnae_secao_divisao,
+  suporte_municipios,
   overwrite = TRUE,
   internal = TRUE
 )

@@ -8,15 +8,15 @@
 nomes_cnae_subclasse(tabela, campo)
 }
 \arguments{
-\item{tabela}{A tabela para adicionar os nomes das subclasses da CNAE}
+\item{tabela}{Dataframe: a tabela para adicionar os nomes das subclasses da CNAE}
 
-\item{campo}{A coluna com os códigos das subclasses da CNAE}
+\item{campo}{Caractere: a coluna com os códigos das subclasses da CNAE}
 }
 \value{
 Adiciona uma coluna com as descrições das subclasses da CNAE em uma tabela que possui apenas os códigos.
 }
 \description{
-Nomes Classificação Nacional de Atividades Econômicas - Subclasse
+Procura em dataframe por coluna com códigos CNAE subclasse e adiciona uma coluna com os nomes relacionados.
 }
 \examples{
 df1 <- data.frame(codigos_cnae_subclasse = c("0111301", "4520008", "9900800"))

@@ -8,15 +8,15 @@
 nomes_cnae_divisao(tabela, campo)
 }
 \arguments{
-\item{tabela}{Data.frame: a tabela para adicionar os nomes das divisões da CNAE}
+\item{tabela}{Dataframe: a tabela para adicionar os nomes das divisões da CNAE}
 
-\item{campo}{Caracter: a coluna com os códigos das divisões da CNAE}
+\item{campo}{Caractere: a coluna com os códigos das divisões da CNAE}
 }
 \value{
 Adiciona uma coluna com as descrições das divisões da CNAE em uma tabela que possui apenas os códigos.
 }
 \description{
-Nomes Classificação Nacional de Atividades Econômicas - Divisão
+Procura em dataframe por coluna com códigos CNAE divisão e adiciona uma coluna com os nomes relacionados.
 }
 \examples{
 df1 <- data.frame(codigos_cnae_divisao = c("01", "45", "99"))

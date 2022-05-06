@@ -2,8 +2,10 @@
 #'
 #' @encoding UTF-8
 #'
-#' @param tabela Data.frame: a tabela para adicionar os nomes das seções da CNAE
-#' @param campo Caracter: a coluna com os códigos das seções da CNAE
+#' @description Procura em dataframe por coluna com códigos CNAE seção e adiciona uma coluna com os nomes relacionados.
+#'
+#' @param tabela Dataframe: a tabela para adicionar os nomes das seções da CNAE
+#' @param campo Caractere: a coluna com os códigos das seções da CNAE
 #'
 #' @return Adiciona uma coluna com as descrições das seções da CNAE em uma tabela que possui apenas os códigos.
 #' @export

@@ -19,11 +19,11 @@ Adiciona uma coluna com as descrições das subclasses da CNAE em uma tabela que
 Nomes Classificação Nacional de Atividades Econômicas - Subclasse
 }
 \examples{
-df1 <- data.frame(col1 = c("0111301", "4520008", "9900800"))
-df2 <- nomes_cnae_subclasse(df1, col1)
+df1 <- data.frame(codigos_cnae_subclasse = c("0111301", "4520008", "9900800"))
+df2 <- nomes_cnae_subclasse(df1, "codigos_cnae_subclasse")
 df2
 
-df3 <- data.frame(col1 = c(111301, 4520008, 9900800))
-df4 <- nomes_cnae_subclasse(df3, col1)
+df3 <- data.frame(codigos_cnae_subclasse = c(111301, 4520008, 9900800))
+df4 <- nomes_cnae_subclasse(df3, "codigos_cnae_subclasse")
 df4
 }

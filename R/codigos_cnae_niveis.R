@@ -2,25 +2,23 @@
 #'
 #' @encoding UTF-8
 #'
-#' @param tabela A tabela para adicionar outros níveis CNAE.
-#' @param campo A coluna com os códigos subclasse da CNAE.
-#' @param nivel O nível CNAE desejado. Deve ser "seção", "divisão", "grupo" ou "classe".
+#' @param tabela Dataframe: a tabela para adicionar outros níveis CNAE.
+#' @param campo Caracter: a coluna com os códigos subclasse da CNAE.
+#' @param nivel Caracter: o nível CNAE desejado. Deve ser "seção", "divisão", "grupo" ou "classe".
 #' @param add_nomes Logical: deseja adicionar uma coluna com os nomes?
 #'
 #' @return Uma nova coluna com os códigos CNAE em nível mais agrupados a partir de subclasse.
 #' @export
 #'
 #' @examples
-#' df1 <- data.frame(col1 = c(9609201, 111302))
-#' df2 <- codigos_cnae(df1, col1, "seção")
+#' df1 <- data.frame(cnae_subclasse = c(9609201, 111302))
+#' df2 <- codigos_cnae_niveis(df1, cnae_subclasse, "seção")
 #' df2
 #'
-#' df3 <- data.frame(col1 = c("9609201", "0111302"))
-#' df4 <- codigos_cnae(df3, col1, "divisão")
+#' df3 <- data.frame(cnae_subclasse = c("9609201", "0111302"))
+#' df4 <- codigos_cnae_niveis(df3, cnae_subclasse, "classe", add_nomes = TRUE)
 #' df4
-codigos_cnae <- function(tabela, campo, nivel, add_nomes = F) {
-
-  cod_caracter <- cnae_divisao <- var <- `:=` <-  NULL
+codigos_cnae_niveis <- function(tabela, campo, nivel, add_nomes = F) {
 
   # verifica o nivel escolhido
   try(if(!(nivel %in% list("classe", "grupo", "divis\u00e3o","se\u00e7\u00e3o"))){
@@ -74,29 +72,8 @@ codigos_cnae <- function(tabela, campo, nivel, add_nomes = F) {
 
   if (add_nomes == T) {
     func_nomes <- paste0("nomes_cnae_", vetor_nivel_ascii)
-    x <- do.call(func_nomes, args = c(x,vetor_nome))
+    x <- do.call(func_nomes, args = list(x,vetor_nome))
   }
 
   return(x)
 }
-
-
-
-df3 <- data.frame(col1 = c("9609201", "0111302"))
-df4 <- codigos_cnae(df3, col1, "classe", add_nomes = F)
-
-nivel <- "seção"
-
-df5 <- do.call(nomes_cnae_classe, args = c(df4,codigo_cnae_classe))
-
-df6 <- nomes_cnae_classe(df4, codigo_cnae_classe)
-
-# nome a partir do nivel escolhido
-if (nivel == "se\u00e7\u00e3o") {
-  vetor_nivel_ascii <- "secao"
-} else if(nivel == "divis\u00e3o") {
-  vetor_nivel_ascii <- "divisao"
-} else{vetor_nivel_ascii <- paste0(nivel)}
-vetor_nome <- paste0("codigo_cnae_", vetor_nivel_ascii)
-
-

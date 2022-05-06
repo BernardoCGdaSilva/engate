@@ -8,9 +8,9 @@
 nomes_cnae_grupo(tabela, campo)
 }
 \arguments{
-\item{tabela}{A tabela para adicionar os nomes das grupos da CNAE}
+\item{tabela}{Data.frame: a tabela para adicionar os nomes das grupos da CNAE}
 
-\item{campo}{A coluna com os códigos das grupos da CNAE}
+\item{campo}{Caracter: a coluna com os códigos das grupos da CNAE}
 }
 \value{
 Adiciona uma coluna com as descrições das grupos da CNAE em uma tabela que possui apenas os códigos.
@@ -19,11 +19,11 @@ Adiciona uma coluna com as descrições das grupos da CNAE em uma tabela que pos
 Nomes Classificação Nacional de Atividades Econômicas - Grupo
 }
 \examples{
-df1 <- data.frame(col1 = c("011", "452", "990"))
-df2 <- nomes_cnae_grupo(df1, col1)
+df1 <- data.frame(codigos_cnae_grupo = c("011", "452", "990"))
+df2 <- nomes_cnae_grupo(df1, "codigos_cnae_grupo")
 df2
 
-df3 <- data.frame(col1 = c(11, 452, 990))
-df4 <- nomes_cnae_grupo(df3, col1)
+df3 <- data.frame(codigos_cnae_grupo = c(11, 452, 990))
+df4 <- nomes_cnae_grupo(df3, "codigos_cnae_grupo")
 df4
 }

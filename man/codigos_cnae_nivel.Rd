@@ -5,7 +5,7 @@
 \alias{codigos_cnae_nivel}
 \title{Códigos Classificação Nacional de Atividades Econômicas}
 \usage{
-codigos_cnae_nivel(tabela, campo, nivel, add_nomes = F)
+codigos_cnae_nivel(tabela, campo, nivel, add_nomes = FALSE)
 }
 \arguments{
 \item{tabela}{Dataframe: a tabela para adicionar outros níveis CNAE.}

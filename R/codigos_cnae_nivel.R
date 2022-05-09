@@ -21,11 +21,11 @@
 #' df3 <- data.frame(cnae_subclasse = c("9609201", "0111302"))
 #' df4 <- codigos_cnae_nivel(df3, cnae_subclasse, "classe", add_nomes = TRUE)
 #' df4
-codigos_cnae_nivel <- function(tabela, campo, nivel, add_nomes = F) {
+codigos_cnae_nivel <- function(tabela, campo, nivel, add_nomes = FALSE) {
 
   # verifica o nivel escolhido
   try(if(!(nivel %in% list("classe", "grupo", "divis\u00e3o","se\u00e7\u00e3o"))){
-         stop("Por favor escolha um nivel CNAE acima de subclasse.")})
+         stop("Por favor, escolha um nivel CNAE acima de subclasse.")})
 
   # nome a partir do nivel escolhido
     if (nivel == "se\u00e7\u00e3o") {
@@ -73,7 +73,7 @@ codigos_cnae_nivel <- function(tabela, campo, nivel, add_nomes = F) {
 
   # Adiciona nomes
 
-  if (add_nomes == T) {
+  if (add_nomes == TRUE) {
     func_nomes <- paste0("nomes_cnae_", vetor_nivel_ascii)
     x <- do.call(func_nomes, args = list(x,vetor_nome))
   }

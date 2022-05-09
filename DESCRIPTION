@@ -1,5 +1,5 @@
 Package: engate
-Title: Attach description to brazilian public data indexes
+Title: Attach description to brazilian public data
 Version: 0.0.0.9000
 Authors@R: 
     person("Bernardo", "Silva", , "bernardocgdasilva@gmail.com", role = c("aut", "cre"),
@@ -15,6 +15,7 @@ Depends:
 Imports: 
     dplyr,
     magrittr,
-    rlang
+    rlang,
+    tidyselect
 URL: https://github.com/BernardoCGdaSilva/engate
 BugReports: https://github.com/BernardoCGdaSilva/engate/issues

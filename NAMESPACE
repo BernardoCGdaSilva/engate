@@ -2,6 +2,7 @@
 
 export("%>%")
 export(codigos_cnae_nivel)
+export(codigos_municipio_uf)
 export(nomes_cbo)
 export(nomes_cnae_classe)
 export(nomes_cnae_divisao)
@@ -9,4 +10,5 @@ export(nomes_cnae_grupo)
 export(nomes_cnae_secao)
 export(nomes_cnae_subclasse)
 export(nomes_municipio)
+export(nomes_uf)
 importFrom(magrittr,"%>%")

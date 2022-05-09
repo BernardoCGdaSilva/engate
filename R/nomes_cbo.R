@@ -2,7 +2,7 @@
 #'
 #' @encoding UTF-8
 #'
-#'@description Procura em dataframe por coluna com códigos CBO e adiciona uma coluna com os nomes relacionados.
+#' @description Procura em dataframe por coluna com códigos CBO e adiciona uma coluna com os nomes relacionados.
 #'
 #' @param tabela Dataframe: a tabela para adicionar os nomes das CBOs
 #' @param campo Caractere: a coluna com os códigos CBO

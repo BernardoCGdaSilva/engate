@@ -13,17 +13,18 @@ nomes_municipio(tabela, campo)
 \item{campo}{Caractere: a coluna com os códigos dos municípios brasileiros}
 }
 \value{
-Adiciona uma coluna com nomes dos municípios brasileiros em uma tabela que possui apenas os códigos.
+Adiciona uma coluna com os nomes dos municípios brasileiros em uma tabela que possui apenas os códigos.
 }
 \description{
-Procura em dataframe por coluna com códigos dos municípios brasileiros e adiciona uma coluna com os nomes relacionados.
+Procura em dataframe por coluna com códigos dos municípios brasileiros estabelecidos pelo IBGE
+e adiciona uma coluna com os nomes relacionados.
 }
 \examples{
 df1 <- data.frame(codigos_municipios = c("5219704", "3123858", "2111532"))
-df2 <- nomes_cnae_grupo(df1, "codigos_municipios")
+df2 <- nomes_municipio(df1, "codigos_municipios")
 df2
 
-df3 <- data.frame(codigos_municipios = c(5219704, 3123858, 2111532))
-df4 <- nomes_cnae_grupo(df3, "codigos_municipios")
+df3 <- data.frame(codigos_municipios = c(521970, 312385, 211153))
+df4 <- nomes_municipio(df3, "codigos_municipios")
 df4
 }

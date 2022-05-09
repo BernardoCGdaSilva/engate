@@ -19,3 +19,6 @@ Imports:
     tidyselect
 URL: https://github.com/BernardoCGdaSilva/engate
 BugReports: https://github.com/BernardoCGdaSilva/engate/issues
+Suggests: 
+    testthat (>= 3.0.0)
+Config/testthat/edition: 3

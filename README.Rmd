@@ -16,6 +16,7 @@ knitr::opts_chunk$set(
 # engate
 
 <!-- badges: start -->
+[![R-CMD-check](https://github.com/BernardoCGdaSilva/engate/workflows/R-CMD-check/badge.svg)](https://github.com/BernardoCGdaSilva/engate/actions)
 <!-- badges: end -->
 
 engate is a package which aims to help data manipulation of brazilian public data. It consists of two sets of functions - nomes and codigos - that match a index column with its description (in the first case) or a related index (in the second).

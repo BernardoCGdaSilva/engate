@@ -4,6 +4,8 @@
 # engate
 
 <!-- badges: start -->
+
+[![R-CMD-check](https://github.com/BernardoCGdaSilva/engate/workflows/R-CMD-check/badge.svg)](https://github.com/BernardoCGdaSilva/engate/actions)
 <!-- badges: end -->
 
 engate is a package which aims to help data manipulation of brazilian

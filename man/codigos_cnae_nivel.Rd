@@ -25,10 +25,10 @@ os códigos CNAE equivalentes em nível superior (classe, grupo, divisão ou se�
 }
 \examples{
 df1 <- data.frame(cnae_subclasse = c(9609201, 111302))
-df2 <- codigos_cnae_nivel(df1, cnae_subclasse, "seção")
+df2 <- codigos_cnae_nivel(df1, "cnae_subclasse", "seção")
 df2
 
 df3 <- data.frame(cnae_subclasse = c("9609201", "0111302"))
-df4 <- codigos_cnae_nivel(df3, cnae_subclasse, "classe", add_nomes = TRUE)
+df4 <- codigos_cnae_nivel(df3, "cnae_subclasse", "grupo", add_nomes = TRUE)
 df4
 }

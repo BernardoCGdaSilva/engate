@@ -1,8 +1,8 @@
 Package: engate
 Title: Attach description to brazilian public data
-Version: 0.0.0.9000
+Version: 0.1.0.0
 Authors@R: 
-    person("Bernardo", "Silva", , "bernardocgdasilva@gmail.com", role = c("aut", "cre"),
+    person("Bernardo", "C G da Silva", , "bernardocgdasilva@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))
 Description: Two sets of functions - nomes and codigos - that match a index column with its 
     description (in the first case) or a related index (in the second) in brazilian public data.

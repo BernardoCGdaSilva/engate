@@ -1,4 +1,6 @@
 url: https://bernardocgdasilva.github.io/engate/
+lang: pt
 template:
   bootstrap: 5
-
+development:
+  mode: auto

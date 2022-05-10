@@ -1,6 +1,6 @@
 Package: engate
 Title: Attach description to brazilian public data
-Version: 0.1.0.0
+Version: 0.0.0.9000
 Authors@R: 
     person("Bernardo", "C G da Silva", , "bernardocgdasilva@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "YOUR-ORCID-ID"))

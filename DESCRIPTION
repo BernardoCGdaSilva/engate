@@ -17,7 +17,8 @@ Imports:
     magrittr,
     rlang,
     tidyselect
-URL: https://github.com/BernardoCGdaSilva/engate
+URL: https://github.com/BernardoCGdaSilva/engate,
+    https://bernardocgdasilva.github.io/engate/
 BugReports: https://github.com/BernardoCGdaSilva/engate/issues
 Suggests: 
     testthat (>= 3.0.0)

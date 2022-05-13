@@ -3,6 +3,7 @@
 export("%>%")
 export(codigos_cnae_nivel)
 export(codigos_municipio_uf)
+export(codigos_ncm_cnae)
 export(nomes_cbo)
 export(nomes_cnae_classe)
 export(nomes_cnae_divisao)

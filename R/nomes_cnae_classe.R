@@ -19,19 +19,11 @@
 #' df4 <- nomes_cnae_classe(df3, "codigos_cnae_classes")
 #' df4
 nomes_cnae_classe <- function(tabela, campo) {
+  col_campo <- subset(tabela, select = campo) %>% unlist()
 
-  # transforma o a coluna do campo em vetor para verificar se é número ou caracter
-  teste <- subset(tabela, select = campo) %>% unlist()
+  x <- dplyr::mutate(tabela, cod_caracter = sprintf("%05d", as.numeric(col_campo))) %>%
+    dplyr::left_join(suporte_cnae_classe, by = rlang::set_names("cod", "cod_caracter")) %>%
+    subset(select = -cod_caracter)
 
-  # caso em que as classes são número
-  if (is.numeric(teste)) {
-    x <- dplyr::mutate(tabela, cod_caracter = sprintf("%05d", teste)) %>%
-      dplyr::left_join(suporte_cnae_classe, by = rlang::set_names("cod", "cod_caracter")) %>%
-      subset(select = -cod_caracter)
-
-    # caso em que são caracteres
-  } else {
-    x <- dplyr::left_join(tabela, suporte_cnae_classe, by = rlang::set_names("cod", rlang::quo_name(campo)))
-  }
   return(x)
 }

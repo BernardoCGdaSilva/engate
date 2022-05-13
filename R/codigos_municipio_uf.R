@@ -32,5 +32,11 @@ codigos_municipio_uf <- function(tabela, campo, add_nomes = FALSE) {
     x <- nomes_uf(x, "codigo_uf")
   }
 
+  # Transforma coluna output no formato do input
+
+  if (is.numeric(col_campo)) {
+    x$codigo_uf <- as.numeric(x$codigo_uf)
+  }
+
   return(x)
 }

@@ -19,18 +19,11 @@
 #' df4 <- nomes_cbo(df3, "codigos_cbo")
 #' df4
 nomes_cbo <- function(tabela, campo) {
+  col_campo <- subset(tabela, select = campo) %>% unlist()
 
-  # transforma o a coluna do campo em vetor para verificar se é número ou caracter
-  teste <- subset(tabela, select = campo) %>% unlist()
+  x <- dplyr::mutate(tabela, cod_caracter = sprintf("%06d", as.numeric(col_campo))) %>%
+    dplyr::left_join(suporte_cbo, by = rlang::set_names("cod", "cod_caracter")) %>%
+    subset(select = -cod_caracter)
 
-  # caso em que as cbos são número
-  if (is.numeric(teste)) {
-    x <- dplyr::mutate(tabela, cod_caracter = sprintf("%06d", teste)) %>%
-      merge(suporte_cbo, by.x = "cod_caracter", by.y = "cod", all.x = T) %>%
-      subset(select = -cod_caracter)
-    # caso em que são caracteres
-  } else {
-    x <- merge(tabela, suporte_cbo, by.x = campo, by.y = "cod", all.x = T)
-  }
   return(x)
 }

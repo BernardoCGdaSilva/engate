@@ -1,4 +1,4 @@
-#' Códigos Classificação Nacional de Atividades Econômicas
+#' Códigos Classificação Nacional de Atividades Econômicas - Níveis
 #'
 #' @encoding UTF-8
 #'
@@ -15,20 +15,21 @@
 #'
 #' @examples
 #' df1 <- data.frame(cnae_subclasse = c(9609201, 111302))
-#' df2 <- codigos_cnae_nivel(df1, "cnae_subclasse", "seção")
+#' df2 <- codigos_cnae_nivel(df1, "cnae_subclasse", "classe")
 #' df2
 #'
 #' df3 <- data.frame(cnae_subclasse = c("9609201", "0111302"))
-#' df4 <- codigos_cnae_nivel(df3, "cnae_subclasse", "grupo", add_nomes = TRUE)
+#' df4 <- codigos_cnae_nivel(df3, "cnae_subclasse", "seção", add_nomes = TRUE)
 #' df4
 codigos_cnae_nivel <- function(tabela, campo, nivel, add_nomes = FALSE) {
 
   # verifica o nivel escolhido
-  try(if (!(nivel %in% list("classe", "grupo", "divis\u00e3o", "se\u00e7\u00e3o"))) {
-    stop("Por favor, escolha um nivel CNAE acima de subclasse.")
-  })
+  if (!(nivel %in% list("classe", "grupo", "divis\u00e3o", "se\u00e7\u00e3o"))) {
+    stop("Por favor, escolha um nivel CNAE acima de subclasse.", call. = F)
+  }
 
   # nome a partir do nivel escolhido
+
   if (nivel == "se\u00e7\u00e3o") {
     vetor_nivel_ascii <- "secao"
   } else if (nivel == "divis\u00e3o") {
@@ -51,9 +52,13 @@ codigos_cnae_nivel <- function(tabela, campo, nivel, add_nomes = FALSE) {
 
   # se seção ou não
   if (nivel != "se\u00e7\u00e3o") {
+
+    # Transforma coluna output no formato do input
+
     if (is.numeric(teste)) {
       x <- x %>% dplyr::mutate(across(vetor_temp, as.numeric))
     }
+
     x <- x %>% dplyr::rename(!!vetor_nome := vetor_temp)
   } else {
     x <- x %>%

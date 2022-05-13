@@ -19,12 +19,12 @@
 #' df2
 #'
 #' df3 <- data.frame(codigos_uf = c(11, 22, 43))
-#' df4 <- nomes_uf(df3, "codigos_uf",nome = FALSE, sigla = TRUE)
+#' df4 <- nomes_uf(df3, "codigos_uf", nome = FALSE, sigla = TRUE)
 #' df4
 nomes_uf <- function(tabela, campo, nome = TRUE, sigla = FALSE) {
-
-  try(if(nome == FALSE & sigla == FALSE){
-    stop("Por favor, defina TRUE em ao menos um argumento nome ou sigla")})
+  if (nome == FALSE & sigla == FALSE) {
+    stop("Por favor, defina TRUE em ao menos um argumento nome ou sigla", call. = F)
+  }
 
   # transforma o a coluna do campo em vetor para verificar se é número ou caracter
   teste <- subset(tabela, select = campo) %>% unlist()

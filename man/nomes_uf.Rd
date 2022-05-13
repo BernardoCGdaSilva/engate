@@ -29,6 +29,6 @@ df2 <- nomes_uf(df1, "codigos_uf")
 df2
 
 df3 <- data.frame(codigos_uf = c(11, 22, 43))
-df4 <- nomes_uf(df3, "codigos_uf",nome = FALSE, sigla = TRUE)
+df4 <- nomes_uf(df3, "codigos_uf", nome = FALSE, sigla = TRUE)
 df4
 }

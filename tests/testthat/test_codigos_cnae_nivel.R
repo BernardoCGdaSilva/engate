@@ -1,270 +1,280 @@
 
-test_that("input caractere", {
-  df_carac_7 <- data.frame(col1 = c("9609201", "0111302"))
-  df_carac_6 <- data.frame(col1 = c("9609201", "111302"))
+#_________________________________________________________________________________________________
+#_________________________________________INPUT SUBCLASSE_________________________________________
+#_________________________________________________________________________________________________
 
-  # 7 caracteres classe
+
+test_that("input subclasse", {
+  df_carac_cheio <- data.frame(col1 = c("0111302", "9609201"))
+  df_carac_semi <- data.frame(col1 = c("111302", "9609201"))
+  df_num <- data.frame(col1 = c(111302, 9609201))
+
+  # Input caracteres cheio
   expect_equal(
-    codigos_cnae_nivel(df_carac_7, "col1", "classe"),
+    codigos_cnae_nivel(df_carac_cheio, "col1", add_nomes = TRUE),
+    data.frame(col1 = df_carac_cheio,
+               codigo_cnae_secao = c("A", "S"),
+               nomes_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços"))
+  )
+
+  # Input caracteres semi
+  expect_equal(
+    codigos_cnae_nivel(df_carac_semi, "col1", add_nomes = TRUE),
+    data.frame(col1 = df_carac_semi,
+               codigo_cnae_secao = c("A", "S"),
+               nomes_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços"))
+  )
+
+  # Input numeros
+  expect_equal(
+    codigos_cnae_nivel(df_num, "col1", add_nomes = TRUE),
     data.frame(
-      col1 = c("9609201", "0111302"),
-      codigo_cnae_classe = c("96092", "01113")
+      col1 = df_num,
+      codigo_cnae_secao = c("A", "S"),
+      nomes_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços")
     )
   )
 
-  # 6 caracteres classe
+  # Output divisao
   expect_equal(
-    codigos_cnae_nivel(df_carac_6, "col1", "classe"),
-    data.frame(
-      col1 = c("9609201", "111302"),
-      codigo_cnae_classe = c("96092", "01113")
-    )
+    codigos_cnae_nivel(df_num, "col1", nivel_output = "divisão", add_nomes = TRUE),
+    data.frame(col1 = df_num,
+               codigo_cnae_divisao = c(1, 96),
+               nomes_cnae_divisao = c("Agricultura, Pecuária E Serviços Relacionados", "Outras Atividades De Serviços Pessoais"))
   )
 
-  # 7 caracteres grupo
+  # Output grupo
   expect_equal(
-    codigos_cnae_nivel(df_carac_7, "col1", "grupo"),
-    data.frame(
-      col1 = c("9609201", "0111302"),
-      codigo_cnae_grupo = c("960", "011")
-    )
+    codigos_cnae_nivel(df_num, "col1", nivel_output = "grupo", add_nomes = TRUE),
+    data.frame(col1 = df_num,
+               codigo_cnae_grupo = c(11, 960),
+               nomes_cnae_grupo = c("Produção De Lavouras Temporárias", "Outras Atividades De Serviços Pessoais"))
   )
 
-  # 6 caracteres grupo
+  # Output classe
   expect_equal(
-    codigos_cnae_nivel(df_carac_6, "col1", "grupo"),
-    data.frame(
-      col1 = c("9609201", "111302"),
-      codigo_cnae_grupo = c("960", "011")
-    )
+    codigos_cnae_nivel(df_num, "col1", nivel_output = "classe", add_nomes = TRUE),
+    data.frame(col1 = df_num,
+               codigo_cnae_classe = c(1113, 96092),
+               nomes_cnae_classe = c("Cultivo De Cereais", "Atividades De Serviços Pessoais Não Especificadas Anteriormente"))
   )
 
-  # 7 caracteres divisão
-  expect_equal(
-    codigos_cnae_nivel(df_carac_7, "col1", "divisão"),
-    data.frame(
-      col1 = c("9609201", "0111302"),
-      codigo_cnae_divisao = c("96", "01")
-    )
-  )
-
-  # 6 caracteres divisão
-  expect_equal(
-    codigos_cnae_nivel(df_carac_6, "col1", "divisão"),
-    data.frame(
-      col1 = c("9609201", "111302"),
-      codigo_cnae_divisao = c("96", "01")
-    )
-  )
-
-  # 7 caracteres seção
-  expect_equal(
-    codigos_cnae_nivel(df_carac_7, "col1", "seção"),
-    data.frame(
-      col1 = c("9609201", "0111302"),
-      codigo_cnae_secao = c("S", "A")
-    )
-  )
-
-  # 6 caracteres seção
-  expect_equal(
-    codigos_cnae_nivel(df_carac_6, "col1", "seção"),
-    data.frame(
-      col1 = c("9609201", "111302"),
-      codigo_cnae_secao = c("S", "A")
-    )
-  )
-
-  # caracteres + nomes classe
-  expect_equal(
-    codigos_cnae_nivel(df_carac_7, "col1", "classe", add_nomes = T),
-    data.frame(
-      col1 = c("9609201", "0111302"),
-      codigo_cnae_classe = c("96092", "01113"),
-      nomes_cnae_classe = c(
-        "Atividades De Serviços Pessoais Não Especificadas Anteriormente",
-        "Cultivo De Cereais"
-      )
-    )
-  )
-
-  # caracteres + nomes grupo
-  expect_equal(
-    codigos_cnae_nivel(df_carac_7, "col1", "grupo", add_nomes = T),
-    data.frame(
-      col1 = c("9609201", "0111302"),
-      codigo_cnae_grupo = c("960", "011"),
-      nomes_cnae_grupo = c(
-        "Outras Atividades De Serviços Pessoais",
-        "Produção De Lavouras Temporárias"
-      )
-    )
-  )
-
-  # caracteres + nomes divisão
-  expect_equal(
-    codigos_cnae_nivel(df_carac_7, "col1", "divisão", add_nomes = T),
-    data.frame(
-      col1 = c("9609201", "0111302"),
-      codigo_cnae_divisao = c("96", "01"),
-      nomes_cnae_divisao = c(
-        "Outras Atividades De Serviços Pessoais",
-        "Agricultura, Pecuária E Serviços Relacionados"
-      )
-    )
-  )
-
-  # caracteres + nomes seção
-  expect_equal(
-    codigos_cnae_nivel(df_carac_7, "col1", "seção", add_nomes = T),
-    data.frame(
-      col1 = c("9609201", "0111302"),
-      codigo_cnae_secao = c("S", "A"),
-      nomes_cnae_secao = c(
-        "Outras Atividades de Serviços",
-        "Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura"
-      )
-    )
-  )
-
-  # nivel errado
+  # erro de output
   expect_error(
-    codigos_cnae_nivel(df_carac_7, "col1", "errado", add_nomes = T),
-    "Por favor, escolha um nivel CNAE acima de subclasse."
+    codigos_cnae_nivel(df_num, "col1", nivel_output = "subclasse", add_nomes = TRUE),
+    "Por favor, escolha um n\u00edvel CNAE acima de subclasse para output."
+  )
+
+  # erro de input
+  expect_error(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "seção", add_nomes = TRUE),
+    "Por favor, escolha um n\u00edvel CNAE abaixo de se\u00e7\u00e3o para input"
   )
 })
 
-test_that("input numero", {
-  df_num_7 <- data.frame(col1 = c(9609201, 0111302))
-  df_num_6 <- data.frame(col1 = c(9609201, 111302))
+#_________________________________________________________________________________________________
+#__________________________________________INPUT CLASSE___________________________________________
+#_________________________________________________________________________________________________
 
-  # 7 numeros classe
+test_that("input classe", {
+  df_carac_cheio <- data.frame(col1 = c("01113", "96092"))
+  df_carac_semi <- data.frame(col1 = c("1113", "96092"))
+  df_num <- data.frame(col1 = c(1113, 96092))
+
+  # Input caracteres cheio
   expect_equal(
-    codigos_cnae_nivel(df_num_7, "col1", "classe"),
+    codigos_cnae_nivel(df_carac_cheio, "col1", nivel_input = "classe", add_nomes = TRUE),
+    data.frame(col1 = df_carac_cheio,
+               codigo_cnae_secao = c("A", "S"),
+               nomes_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços"))
+  )
+
+  # Input caracteres semi
+  expect_equal(
+    codigos_cnae_nivel(df_carac_semi, "col1", nivel_input = "classe", add_nomes = TRUE),
+    data.frame(col1 = df_carac_semi,
+               codigo_cnae_secao = c("A", "S"),
+               nomes_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços"))
+  )
+
+  # Input numeros
+  expect_equal(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "classe", add_nomes = TRUE),
     data.frame(
-      col1 = c(9609201, 111302),
-      codigo_cnae_classe = c(96092, 1113)
+      col1 = df_num,
+      codigo_cnae_secao = c("A", "S"),
+      nomes_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços")
     )
   )
 
-  # 6 numeros classe
+  # Output divisao
   expect_equal(
-    codigos_cnae_nivel(df_num_6, "col1", "classe"),
-    data.frame(
-      col1 = c(9609201, 111302),
-      codigo_cnae_classe = c(96092, 1113)
-    )
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "classe", nivel_output = "divisão", add_nomes = TRUE),
+    data.frame(col1 = df_num,
+               codigo_cnae_divisao = c(1, 96),
+               nomes_cnae_divisao = c("Agricultura, Pecuária E Serviços Relacionados", "Outras Atividades De Serviços Pessoais"))
   )
 
-  # 7 numeros grupo
+  # Output grupo
   expect_equal(
-    codigos_cnae_nivel(df_num_7, "col1", "grupo"),
-    data.frame(
-      col1 = c(9609201, 111302),
-      codigo_cnae_grupo = c(960, 11)
-    )
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "classe", nivel_output = "grupo", add_nomes = TRUE),
+    data.frame(col1 = df_num,
+               codigo_cnae_grupo = c(11, 960),
+               nomes_cnae_grupo = c("Produção De Lavouras Temporárias", "Outras Atividades De Serviços Pessoais"))
   )
 
-  # 6 numeros grupo
-  expect_equal(
-    codigos_cnae_nivel(df_num_6, "col1", "grupo"),
-    data.frame(
-      col1 = c(9609201, 111302),
-      codigo_cnae_grupo = c(960, 11)
-    )
-  )
-
-  # 7 numeros divisão
-  expect_equal(
-    codigos_cnae_nivel(df_num_7, "col1", "divisão"),
-    data.frame(
-      col1 = c(9609201, 0111302),
-      codigo_cnae_divisao = c(96, 1)
-    )
-  )
-
-  # 6 numeros divisão
-  expect_equal(
-    codigos_cnae_nivel(df_num_6, "col1", "divisão"),
-    data.frame(
-      col1 = c(9609201, 0111302),
-      codigo_cnae_divisao = c(96, 1)
-    )
-  )
-
-  # 7 numeros seção
-  expect_equal(
-    codigos_cnae_nivel(df_num_7, "col1", "seção"),
-    data.frame(
-      col1 = c(9609201, 111302),
-      codigo_cnae_secao = c("S", "A")
-    )
-  )
-
-  # 6 numeros seção
-  expect_equal(
-    codigos_cnae_nivel(df_num_6, "col1", "seção"),
-    data.frame(
-      col1 = c(9609201, 111302),
-      codigo_cnae_secao = c("S", "A")
-    )
-  )
-
-  # numeros + nomes classe
-  expect_equal(
-    codigos_cnae_nivel(df_num_7, "col1", "classe", add_nomes = T),
-    data.frame(
-      col1 = c(9609201, 111302),
-      codigo_cnae_classe = c(96092, 1113),
-      nomes_cnae_classe = c(
-        "Atividades De Serviços Pessoais Não Especificadas Anteriormente",
-        "Cultivo De Cereais"
-      )
-    )
-  )
-
-  # numeros + nomes grupo
-  expect_equal(
-    codigos_cnae_nivel(df_num_7, "col1", "grupo", add_nomes = T),
-    data.frame(
-      col1 = c(9609201, 111302),
-      codigo_cnae_grupo = c(960, 11),
-      nomes_cnae_grupo = c(
-        "Outras Atividades De Serviços Pessoais",
-        "Produção De Lavouras Temporárias"
-      )
-    )
-  )
-
-  # numeros + nomes divisão
-  expect_equal(
-    codigos_cnae_nivel(df_num_7, "col1", "divisão", add_nomes = T),
-    data.frame(
-      col1 = c(9609201, 0111302),
-      codigo_cnae_divisao = c(96, 1),
-      nomes_cnae_divisao = c(
-        "Outras Atividades De Serviços Pessoais",
-        "Agricultura, Pecuária E Serviços Relacionados"
-      )
-    )
-  )
-
-  # numeros + nomes seção
-  expect_equal(
-    codigos_cnae_nivel(df_num_7, "col1", "seção", add_nomes = T),
-    data.frame(
-      col1 = c(9609201, 111302),
-      codigo_cnae_secao = c("S", "A"),
-      nomes_cnae_secao = c(
-        "Outras Atividades de Serviços",
-        "Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura"
-      )
-    )
-  )
-
-  # nivel errado
+  # Output classe
   expect_error(
-    codigos_cnae_nivel(df_num_7, "col1", "errado", add_nomes = T),
-    "Por favor, escolha um nivel CNAE acima de subclasse."
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "classe", nivel_output = "classe", add_nomes = TRUE),
+    "Por favor, para input classe, escolha como output grupo, divis\u00e3o ou se\u00e7\u00e3o"
+    )
+
+  # erro de output
+  expect_error(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "classe", nivel_output = "subclasse", add_nomes = TRUE),
+    "Por favor, escolha um n\u00edvel CNAE acima de subclasse para output."
+  )
+
+  # erro de input
+  expect_error(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "seção", add_nomes = TRUE),
+    "Por favor, escolha um n\u00edvel CNAE abaixo de se\u00e7\u00e3o para input"
   )
 })
+
+#_________________________________________________________________________________________________
+#___________________________________________INPUT GRUPO___________________________________________
+#_________________________________________________________________________________________________
+
+test_that("input grupo", {
+  df_carac_cheio <- data.frame(col1 = c("011", "960"))
+  df_carac_semi <- data.frame(col1 = c("11", "960"))
+  df_num <- data.frame(col1 = c(11, 960))
+
+  # Input caracteres cheio
+  expect_equal(
+    codigos_cnae_nivel(df_carac_cheio, "col1", nivel_input = "grupo", add_nomes = TRUE),
+    data.frame(col1 = df_carac_cheio,
+               codigo_cnae_secao = c("A", "S"),
+               nomes_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços"))
+  )
+
+  # Input caracteres semi
+  expect_equal(
+    codigos_cnae_nivel(df_carac_semi, "col1", nivel_input = "grupo", add_nomes = TRUE),
+    data.frame(col1 = df_carac_semi,
+               codigo_cnae_secao = c("A", "S"),
+               nomes_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços"))
+  )
+
+  # Input numeros
+  expect_equal(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "grupo", add_nomes = TRUE),
+    data.frame(
+      col1 = df_num,
+      codigo_cnae_secao = c("A", "S"),
+      nomes_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços")
+    )
+  )
+
+  # Output divisao
+  expect_equal(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "grupo", nivel_output = "divisão", add_nomes = TRUE),
+    data.frame(col1 = df_num,
+               codigo_cnae_divisao = c(1, 96),
+               nomes_cnae_divisao = c("Agricultura, Pecuária E Serviços Relacionados", "Outras Atividades De Serviços Pessoais"))
+  )
+
+  # Output grupo
+  expect_error(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "grupo", nivel_output = "grupo", add_nomes = TRUE),
+    "Por favor, para input grupo, escolha como output divis\u00e3o ou se\u00e7\u00e3o"
+    )
+
+  # Output classe
+  expect_error(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "grupo", nivel_output = "classe", add_nomes = TRUE),
+    "Por favor, para input grupo, escolha como output divis\u00e3o ou se\u00e7\u00e3o"
+  )
+
+  # erro de output
+  expect_error(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "grupo", nivel_output = "subclasse", add_nomes = TRUE),
+    "Por favor, escolha um n\u00edvel CNAE acima de subclasse para output."
+  )
+
+  # erro de input
+  expect_error(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "seção", add_nomes = TRUE),
+    "Por favor, escolha um n\u00edvel CNAE abaixo de se\u00e7\u00e3o para input"
+  )
+
+})
+
+
+#_________________________________________________________________________________________________
+#__________________________________________INPUT DIVISÃO__________________________________________
+#_________________________________________________________________________________________________
+
+test_that("input divisao", {
+  df_carac_cheio <- data.frame(col1 = c("01", "96"))
+  df_carac_semi <- data.frame(col1 = c("1", "96"))
+  df_num <- data.frame(col1 = c(1, 96))
+
+  # Input caracteres cheio
+  expect_equal(
+    codigos_cnae_nivel(df_carac_cheio, "col1", nivel_input = "divisão", add_nomes = TRUE),
+    data.frame(col1 = df_carac_cheio,
+               codigo_cnae_secao = c("A", "S"),
+               nomes_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços"))
+  )
+
+  # Input caracteres semi
+  expect_equal(
+    codigos_cnae_nivel(df_carac_semi, "col1", nivel_input = "divisão", add_nomes = TRUE),
+    data.frame(col1 = df_carac_semi,
+               codigo_cnae_secao = c("A", "S"),
+               nomes_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços"))
+  )
+
+  # Input numeros
+  expect_equal(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "divisão", add_nomes = TRUE),
+    data.frame(
+      col1 = df_num,
+      codigo_cnae_secao = c("A", "S"),
+      nomes_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços")
+    )
+  )
+
+  # Output divisao
+  expect_error(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "divisão", nivel_output = "divisão", add_nomes = TRUE),
+    "Por favor, para input divis\u00e3o, escolha como output se\u00e7\u00e3o")
+
+  # Output grupo
+  expect_error(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "divisão", nivel_output = "grupo", add_nomes = TRUE),
+    "Por favor, para input divis\u00e3o, escolha como output se\u00e7\u00e3o"
+  )
+
+  # Output classe
+  expect_error(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "divisão", nivel_output = "classe", add_nomes = TRUE),
+    "Por favor, para input divis\u00e3o, escolha como output se\u00e7\u00e3o"
+  )
+
+  # erro de output
+  expect_error(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "divisão", nivel_output = "subclasse", add_nomes = TRUE),
+    "Por favor, escolha um n\u00edvel CNAE acima de subclasse para output."
+  )
+
+  # erro de input
+  expect_error(
+    codigos_cnae_nivel(df_num, "col1", nivel_input = "seção", add_nomes = TRUE),
+    "Por favor, escolha um n\u00edvel CNAE abaixo de se\u00e7\u00e3o para input"
+  )
+
+})
+

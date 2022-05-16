@@ -1,7 +1,7 @@
 #' Códigos Nomeclatura Comum do Mercosul - Classificação Brasileira de Atividades Econômicas (classe)
 #'
 #' @description Em um dataframe que possui uma coluna com os códigos NCM, adiciona uma coluna extra com os códigos
-#'     dsa classes CNAE equivalentes. Adiciona ainda os nomes destas, se desejar. A tradução é realizada de acordo com
+#'     das classes CNAE equivalentes. Adiciona ainda os nomes destas, se desejar. A tradução é realizada de acordo com
 #'     a correspondência NCM 2012 x CNAE 2.0 divulgada pelo
 #'     \href{https://concla.ibge.gov.br/classificacoes/correspondencias/atividades-economicas.html}{IBGE}.
 #'
@@ -30,7 +30,7 @@ codigos_ncm_cnae <- function(tabela, campo, add_nomes = FALSE) {
   # Adiciona nomes
 
   if (add_nomes == TRUE) {
-    x <- nomes_cnae_classe(x, "cnae_classe")
+    x <- do.call(nomes_cnae, args = list(tabela = x, campo = "cnae_classe", nivel = "classe"))
   }
 
   # Transforma coluna output no formato do input

@@ -18,7 +18,7 @@ Uma nova coluna com os códigos das classes CNAE equivalentes aos códigos NCM.
 }
 \description{
 Em um dataframe que possui uma coluna com os códigos NCM, adiciona uma coluna extra com os códigos
-dsa classes CNAE equivalentes. Adiciona ainda os nomes destas, se desejar. A tradução é realizada de acordo com
+das classes CNAE equivalentes. Adiciona ainda os nomes destas, se desejar. A tradução é realizada de acordo com
 a correspondência NCM 2012 x CNAE 2.0 divulgada pelo
 \href{https://concla.ibge.gov.br/classificacoes/correspondencias/atividades-economicas.html}{IBGE}.
 }

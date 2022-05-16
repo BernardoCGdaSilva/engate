@@ -5,30 +5,38 @@
 \alias{codigos_cnae_nivel}
 \title{Códigos Classificação Nacional de Atividades Econômicas - Níveis}
 \usage{
-codigos_cnae_nivel(tabela, campo, nivel, add_nomes = FALSE)
+codigos_cnae_nivel(
+  tabela,
+  campo,
+  nivel_input = "subclasse",
+  nivel_output = "seção",
+  add_nomes = FALSE
+)
 }
 \arguments{
 \item{tabela}{Dataframe: a tabela para adicionar outros níveis CNAE.}
 
-\item{campo}{Caractere: a coluna com os códigos subclasse da CNAE.}
+\item{campo}{Caractere: a coluna com os códigos da CNAE atuais para input.}
 
-\item{nivel}{Caractere: o nível CNAE desejado. Deve ser "seção", "divisão", "grupo" ou "classe".}
+\item{nivel_input}{Caractere: o nível CNAE atual. Deve ser "subclasse", "classe", "grupo" ou "divisão".}
+
+\item{nivel_output}{Caractere: o nível CNAE desejado. Deve ser "classe", "grupo", "divisão" ou "seção".}
 
 \item{add_nomes}{Logical: deseja adicionar uma coluna com os nomes?}
 }
 \value{
-Uma nova coluna com os códigos CNAE em nível mais agrupados a partir de subclasse.
+Uma nova coluna com os códigos CNAE em nível mais agrupados. Se desejar, uma outra coluna com os nomes.
 }
 \description{
 Procura em dataframe por coluna com os códigos da CNAE subclasse e adiciona coluna extra contendo
 os códigos CNAE equivalentes em nível superior (classe, grupo, divisão ou seção), conforme escolha.
 }
 \examples{
-df1 <- data.frame(cnae_subclasse = c(9609201, 111302))
-df2 <- codigos_cnae_nivel(df1, "cnae_subclasse", "classe")
+df1 <- data.frame(cnae_subclasse = c(111302, 9609201))
+df2 <- codigos_cnae_nivel(df1, "cnae_subclasse")
 df2
 
-df3 <- data.frame(cnae_subclasse = c("9609201", "0111302"))
-df4 <- codigos_cnae_nivel(df3, "cnae_subclasse", "seção", add_nomes = TRUE)
+df3 <- data.frame(cnae_grupo = c("011", "960"))
+df4 <- codigos_cnae_nivel(df3, "cnae_grupo", "grupo", "divisão", TRUE)
 df4
 }

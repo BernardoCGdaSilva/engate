@@ -19,11 +19,15 @@
 #' df4 <- nomes_cbo(df3, "codigos_cbo")
 #' df4
 nomes_cbo <- function(tabela, campo) {
-  col_campo <- subset(tabela, select = campo) %>% unlist()
+  col_campo <- tabela[[campo]]
 
   x <- dplyr::mutate(tabela, cod_caracter = sprintf("%06d", as.numeric(col_campo))) %>%
     dplyr::left_join(suporte_cbo, by = rlang::set_names("cod", "cod_caracter")) %>%
     subset(select = -cod_caracter)
+
+  # Realoca a coluna nova para depois do código
+
+  x <- dplyr::relocate(x, "nomes_cbo", .after = campo)
 
   return(x)
 }

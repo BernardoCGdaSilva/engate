@@ -20,13 +20,17 @@
 #' df4 <- nomes_municipio(df3, "codigos_municipios")
 #' df4
 nomes_municipio <- function(tabela, campo) {
-  col_campo <- subset(tabela, select = campo) %>% unlist()
+  col_campo <- tabela[[campo]]
 
   x <- dplyr::mutate(tabela, cod_caracter = sprintf("%s", col_campo))
   x$cod_caracter <- strtrim(x$cod_caracter, 6)
   x <- x %>%
     dplyr::left_join(suporte_municipios, by = rlang::set_names("cod", "cod_caracter")) %>%
     subset(select = -cod_caracter)
+
+  # Realoca a coluna nova para depois do código
+
+    x <- dplyr::relocate(x, "nome_municipio", .after = campo)
 
   return(x)
 }

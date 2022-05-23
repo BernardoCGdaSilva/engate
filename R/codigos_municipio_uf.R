@@ -21,10 +21,14 @@
 #' df4 <- codigos_municipio_uf(df3, "codigos_municipios", add_nomes = TRUE)
 #' df4
 codigos_municipio_uf <- function(tabela, campo, add_nomes = FALSE) {
-  col_campo <- subset(tabela, select = campo) %>% unlist()
+  col_campo <- tabela[[campo]]
 
   x <- dplyr::mutate(tabela, codigo_uf = sprintf("%s", col_campo))
   x$codigo_uf <- strtrim(x$codigo_uf, 2)
+
+  # Realoca a coluna nova para depois do código
+
+  x <- dplyr::relocate(x, "codigo_uf", .after = campo)
 
   # Adiciona nomes
 

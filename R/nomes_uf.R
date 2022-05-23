@@ -27,7 +27,7 @@ nomes_uf <- function(tabela, campo, nome = TRUE, sigla = FALSE) {
   }
 
   # transforma o a coluna do campo em vetor para verificar se é número ou caracter
-  teste <- subset(tabela, select = campo) %>% unlist()
+  col_campo <- tabela[[campo]]
 
   # Verifica se deseja nome e/ou sigla
 
@@ -41,14 +41,23 @@ nomes_uf <- function(tabela, campo, nome = TRUE, sigla = FALSE) {
   suporte_uf_escolhido <- suporte_uf %>% dplyr::select(tidyselect::all_of(vetor_escolha))
 
   # caso em que as classes são número
-  if (is.numeric(teste)) {
-    x <- dplyr::mutate(tabela, cod_caracter = sprintf("%02d", teste)) %>%
+  if (is.numeric(col_campo)) {
+    x <- dplyr::mutate(tabela, cod_caracter = sprintf("%02d", col_campo)) %>%
       dplyr::left_join(suporte_uf_escolhido, by = rlang::set_names("cod", "cod_caracter")) %>%
       subset(select = -cod_caracter)
 
     # caso em que são caracteres
   } else {
     x <- dplyr::left_join(tabela, suporte_uf_escolhido, by = rlang::set_names("cod", rlang::quo_name(campo)))
+  }
+
+  # Realoca a coluna nova para depois do código
+
+  if (sigla == TRUE) {
+    x <- dplyr::relocate(x, "sigla_uf", .after = campo)
+  }
+  if (nome == TRUE) {
+    x <- dplyr::relocate(x, "nome_uf", .after = campo)
   }
 
   return(x)

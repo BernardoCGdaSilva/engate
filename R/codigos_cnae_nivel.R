@@ -70,12 +70,11 @@ codigos_cnae_nivel <- function(tabela, campo, nivel_input = "subclasse", nivel_o
   # Resutlados dos condicionais e argumentos
   vetor_nome <- paste0("codigo_cnae_", vetor_nivel_output_ascii)
   vetor_tamanho <- paste0("%0", tamanho, "d")
-  col_campo <- subset(tabela, select = campo) %>% unlist()
+  col_campo <- tabela[[campo]]
 
   # dataframe basico
-  x <- dplyr::mutate(tabela, cod_caracter = sprintf(vetor_tamanho, as.numeric(col_campo))) %>%
-    dplyr::mutate(vetor_temp = substr(cod_caracter, 1, limite)) %>%
-    subset(select = -cod_caracter)
+
+  x <- dplyr::mutate(tabela, vetor_temp = substr(sprintf(vetor_tamanho, as.numeric(col_campo)),1, limite))
 
   # se secao
   if (nivel_output != "se\u00e7\u00e3o") {
@@ -90,6 +89,11 @@ codigos_cnae_nivel <- function(tabela, campo, nivel_input = "subclasse", nivel_o
       dplyr::rename("codigo_cnae_secao" = "cnae_secao") %>%
       subset(select = -c(vetor_temp))
   }
+
+  # Realoca a coluna nova para depois do código
+
+  nome <- paste0("codigo_cnae_", vetor_nivel_output_ascii)
+  x <- dplyr::relocate(x, nome, .after = campo)
 
   # Adiciona nomes
 

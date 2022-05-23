@@ -29,32 +29,41 @@ nomes_cnae <- function(tabela, campo, nivel = "subclasse") {
   # casos em que o nivel nao seja secao
   if (nivel != "se\u00e7\u00e3o") {
 
-  # Condicionais do nivel
-  if (nivel == "subclasse") {
-    tamanho <- 7
-    suporte <- suporte_cnae_subclasse
-  } else if (nivel == "classe") {
-    tamanho <- 5
-    suporte <- suporte_cnae_classe
-  } else if (nivel == "grupo") {
-    tamanho <- 3
-    suporte <- suporte_cnae_grupo
-  } else if (nivel == "divis\u00e3o") {
-    tamanho <- 2
-    suporte <- suporte_cnae_divisao
-  }
-  vetor_tamanho <- paste0("%0", tamanho, "d")
+    # Condicionais do nivel
+    if (nivel == "subclasse") {
+      tamanho <- 7
+      suporte <- suporte_cnae_subclasse
+      nome <- "nomes_cnae_subclasse"
+    } else if (nivel == "classe") {
+      tamanho <- 5
+      suporte <- suporte_cnae_classe
+      nome <- "nomes_cnae_classe"
+    } else if (nivel == "grupo") {
+      tamanho <- 3
+      suporte <- suporte_cnae_grupo
+      nome <- "nomes_cnae_grupo"
+    } else if (nivel == "divis\u00e3o") {
+      tamanho <- 2
+      suporte <- suporte_cnae_divisao
+      nome <- "nomes_cnae_divisao"
+    }
+    vetor_tamanho <- paste0("%0", tamanho, "d")
 
-  col_campo <- subset(tabela, select = campo) %>% unlist()
+    col_campo <- tabela[[campo]]
 
-  x <- dplyr::mutate(tabela, cod_caracter = sprintf(vetor_tamanho, as.numeric(col_campo))) %>%
-    dplyr::left_join(suporte, by = rlang::set_names("cod", "cod_caracter")) %>%
-    subset(select = -cod_caracter)
+    x <- dplyr::mutate(tabela, cod_caracter = sprintf(vetor_tamanho, as.numeric(col_campo))) %>%
+      dplyr::left_join(suporte, by = rlang::set_names("cod", "cod_caracter")) %>%
+      subset(select = -cod_caracter)
 
-  # caso em que o nivel seja secao
+    # caso em que o nivel seja secao
   } else {
     x <- dplyr::left_join(tabela, suporte_cnae_secao, by = rlang::set_names("cod", rlang::quo_name(campo)))
+    nome <- "nomes_cnae_secao"
   }
+
+  # Realoca a coluna nova para depois do código
+
+  x <- dplyr::relocate(x, nome, .after = campo)
 
   return(x)
 }

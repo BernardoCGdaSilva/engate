@@ -1,6 +1,6 @@
 
 test_that("Input caractere", {
-  df_carac <- data.frame(col1 = c("11", "22", "43"))
+  df_carac <- data.frame(col1 = c("11", "22", "43"), col2 = c("a", "b", "c"))
 
   # caracteres
   expect_equal(
@@ -11,7 +11,8 @@ test_that("Input caractere", {
         "Rondônia",
         "Piauí",
         "Rio Grande do Sul"
-      )
+      ),
+      col2 = c("a", "b", "c")
     )
   )
 
@@ -25,7 +26,8 @@ test_that("Input caractere", {
         "Piauí",
         "Rio Grande do Sul"
       ),
-      sigla_uf = c("RO", "PI", "RS")
+      sigla_uf = c("RO", "PI", "RS"),
+      col2 = c("a", "b", "c")
     )
   )
 
@@ -34,7 +36,8 @@ test_that("Input caractere", {
     nomes_uf(df_carac, "col1", sigla = T, nome = F),
     data.frame(
       col1 = c("11", "22", "43"),
-      sigla_uf = c("RO", "PI", "RS")
+      sigla_uf = c("RO", "PI", "RS"),
+      col2 = c("a", "b", "c")
     )
   )
 
@@ -46,7 +49,7 @@ test_that("Input caractere", {
 })
 
 test_that("Input numero", {
-  df_num <- data.frame(col1 = c(11, 22, 43))
+  df_num <- data.frame(col1 = c(11, 22, 43), col2 = c("a", "b", "c"))
 
   # numeros
   expect_equal(
@@ -57,7 +60,8 @@ test_that("Input numero", {
         "Rondônia",
         "Piauí",
         "Rio Grande do Sul"
-      )
+      ),
+      col2 = c("a", "b", "c")
     )
   )
 
@@ -71,7 +75,8 @@ test_that("Input numero", {
         "Piauí",
         "Rio Grande do Sul"
       ),
-      sigla_uf = c("RO", "PI", "RS")
+      sigla_uf = c("RO", "PI", "RS"),
+      col2 = c("a", "b", "c")
     )
   )
 
@@ -80,7 +85,8 @@ test_that("Input numero", {
     nomes_uf(df_num, "col1", sigla = T, nome = F),
     data.frame(
       col1 = c(11, 22, 43),
-      sigla_uf = c("RO", "PI", "RS")
+      sigla_uf = c("RO", "PI", "RS"),
+      col2 = c("a", "b", "c")
     )
   )
 

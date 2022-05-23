@@ -21,11 +21,15 @@
 #' df4 <- codigos_ncm_cnae(df3, "codigos_ncm", add_nomes = TRUE)
 #' df4
 codigos_ncm_cnae <- function(tabela, campo, add_nomes = FALSE) {
-  col_campo <- subset(tabela, select = campo) %>% unlist()
+  col_campo <- tabela[[campo]]
 
   x <- dplyr::mutate(tabela, cod_caracter = sprintf("%08d", as.numeric(col_campo))) %>%
     dplyr::left_join(tradutor_ncm_cnae_classe, by = c("cod_caracter" = "ncm")) %>%
     subset(select = -cod_caracter)
+
+  # Realoca a coluna nova para depois do código
+
+  x <- dplyr::relocate(x, "cnae_classe", .after = campo)
 
   # Adiciona nomes
 

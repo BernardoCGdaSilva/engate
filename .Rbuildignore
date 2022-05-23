@@ -7,4 +7,4 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
-^utilidades\.R$
+^utilidades\.Rmd$

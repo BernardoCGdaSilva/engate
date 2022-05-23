@@ -1,0 +1,38 @@
+---
+title: "Utiliades"
+author: "Bernardo C G da Silva"
+date: "23/05/2022"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# Princípios
+
+O pacote deve:
+1. Ler inputs tanto numéricos quanto em caracteres;
+2. Devolver outputs no mesmo formato do input quando for condizente;
+3. Inserir o output na coluna imediatamente à direita do input.
+
+# Set Up
+
+```{r}
+library(devtools)
+library(testthat)
+check()
+```
+
+# Site do pacote
+
+```{r}
+# Run once to configure package to use pkgdown
+usethis::use_pkgdown()
+# Run to build the website
+pkgdown::build_site()
+
+# If you’re using GitHub, we also recommend setting up GitHub actions to automatically build and publish your site:
+usethis::use_pkgdown_github_pages()
+```
+

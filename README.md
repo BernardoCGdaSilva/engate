@@ -10,8 +10,8 @@
 
 engate is a package which aims to help data manipulation of brazilian
 public data. It consists of two sets of functions - nomes and codigos -
-that match a index column with its description (in the first case) or a
-related index (in the second).
+the former matchs an index column with its description and the latter, a
+related index.
 
 ## Installation
 
@@ -23,17 +23,30 @@ You can install the development version of engate from
 devtools::install_github("BernardoCGdaSilva/engate")
 ```
 
-## Example
+## Examples
 
-This is a basic example which shows you how to solve a common problem:
+This is an example of the nomes set of functions:
 
 ``` r
 library(engate)
-df1 <- data.frame(col1 = c("010105", "515220", "992115"))
-df2 <- nomes_cbo(df1,"col1")
+df1 <- data.frame(codigos_cbo = c("010105", "515220", "992115"))
+df2 <- nomes_cbo(df1,"codigos_cbo")
 df2
-#>     col1                                  nomes_cbo
-#> 1 010105             Oficial General da Aeronautica
-#> 2 515220 Auxiliar de Laboratorio de Imunobiologicos
-#> 3 992115                                Borracheiro
+#>   codigos_cbo                                  nomes_cbo
+#> 1      010105             Oficial General da Aeronautica
+#> 2      515220 Auxiliar de Laboratorio de Imunobiologicos
+#> 3      992115                                Borracheiro
+```
+
+And this is an example of the codigos set:
+
+``` r
+library(engate)
+df1 <- data.frame(codigos_ncm = c("01012100", "35052000", "84459030"))
+df2 <- codigos_ncm_cnae(df1, "codigos_ncm")
+df2
+#>   codigos_ncm cnae_classe
+#> 1    01012100       01521
+#> 2    35052000       20916
+#> 3    84459030       28631
 ```

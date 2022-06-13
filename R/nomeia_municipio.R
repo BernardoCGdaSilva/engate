@@ -13,13 +13,13 @@
 #'
 #' @examples
 #' df1 <- data.frame(codigos_municipios = c("5219704", "3123858", "2111532"))
-#' df2 <- nomes_municipio(df1, "codigos_municipios")
+#' df2 <- nomeia_municipio(df1, "codigos_municipios")
 #' df2
 #'
 #' df3 <- data.frame(codigos_municipios = c(521970, 312385, 211153))
-#' df4 <- nomes_municipio(df3, "codigos_municipios")
+#' df4 <- nomeia_municipio(df3, "codigos_municipios")
 #' df4
-nomes_municipio <- function(tabela, campo) {
+nomeia_municipio <- function(tabela, campo) {
   col_campo <- tabela[[campo]]
 
   x <- dplyr::mutate(tabela, cod_caracter = sprintf("%s", col_campo))

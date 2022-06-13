@@ -12,13 +12,13 @@
 #'
 #' @examples
 #' df1 <- data.frame(codigos_cbo = c("010105", "515220", "992115"))
-#' df2 <- nomes_cbo(df1, "codigos_cbo")
+#' df2 <- nomeia_cbo(df1, "codigos_cbo")
 #' df2
 #'
 #' df3 <- data.frame(codigos_cbo = c(010105, 515220, 992115))
-#' df4 <- nomes_cbo(df3, "codigos_cbo")
+#' df4 <- nomeia_cbo(df3, "codigos_cbo")
 #' df4
-nomes_cbo <- function(tabela, campo) {
+nomeia_cbo <- function(tabela, campo) {
   col_campo <- tabela[[campo]]
 
   x <- dplyr::mutate(tabela, cod_caracter = sprintf("%06d", as.numeric(col_campo))) %>%
@@ -27,7 +27,7 @@ nomes_cbo <- function(tabela, campo) {
 
   # Realoca a coluna nova para depois do código
 
-  x <- dplyr::relocate(x, "nomes_cbo", .after = campo)
+  x <- dplyr::relocate(x, "nome_cbo", .after = campo)
 
   return(x)
 }

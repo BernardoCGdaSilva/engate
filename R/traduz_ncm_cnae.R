@@ -14,13 +14,13 @@
 #'
 #' @examples
 #' df1 <- data.frame(codigos_ncm = c("01012100", "35052000", "84459030"))
-#' df2 <- codigos_ncm_cnae(df1, "codigos_ncm")
+#' df2 <- traduz_ncm_cnae(df1, "codigos_ncm")
 #' df2
 #'
 #' df3 <- data.frame(codigos_ncm = c(1012100, 35052000, 84459030))
-#' df4 <- codigos_ncm_cnae(df3, "codigos_ncm", add_nomes = TRUE)
+#' df4 <- traduz_ncm_cnae(df3, "codigos_ncm", add_nomes = TRUE)
 #' df4
-codigos_ncm_cnae <- function(tabela, campo, add_nomes = FALSE) {
+traduz_ncm_cnae <- function(tabela, campo, add_nomes = FALSE) {
   col_campo <- tabela[[campo]]
 
   x <- dplyr::mutate(tabela, cod_caracter = sprintf("%08d", as.numeric(col_campo))) %>%
@@ -34,7 +34,7 @@ codigos_ncm_cnae <- function(tabela, campo, add_nomes = FALSE) {
   # Adiciona nomes
 
   if (add_nomes == TRUE) {
-    x <- do.call(nomes_cnae, args = list(tabela = x, campo = "cnae_classe", nivel = "classe"))
+    x <- do.call(nomeia_cnae, args = list(tabela = x, campo = "cnae_classe", nivel = "classe"))
   }
 
   # Transforma coluna output no formato do input

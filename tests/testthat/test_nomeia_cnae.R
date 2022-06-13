@@ -10,20 +10,20 @@ test_that("nivel subclasse", {
 
   # Caractere cheio
   expect_equal(
-    nomes_cnae(df_carac_cheio, "col1"),
-    data.frame(col1 = df_carac_cheio, nomes_cnae_subclasse = c("Cultivo de Milho", "Clínicas de estética e similares"))
+    nomeia_cnae(df_carac_cheio, "col1"),
+    data.frame(col1 = df_carac_cheio, nome_cnae_subclasse = c("Cultivo de Milho", "Clínicas de estética e similares"))
   )
 
   # Caractere semi
   expect_equal(
-    nomes_cnae(df_carac_semi, "col1"),
-    data.frame(col1 = df_carac_semi, nomes_cnae_subclasse = c("Cultivo de Milho", "Clínicas de estética e similares"))
+    nomeia_cnae(df_carac_semi, "col1"),
+    data.frame(col1 = df_carac_semi, nome_cnae_subclasse = c("Cultivo de Milho", "Clínicas de estética e similares"))
   )
 
   # Numero
   expect_equal(
-    nomes_cnae(df_num, "col1"),
-    data.frame(col1 = df_num, nomes_cnae_subclasse = c("Cultivo de Milho", "Clínicas de estética e similares"))
+    nomeia_cnae(df_num, "col1"),
+    data.frame(col1 = df_num, nome_cnae_subclasse = c("Cultivo de Milho", "Clínicas de estética e similares"))
   )
 })
 
@@ -38,20 +38,20 @@ test_that("nivel classe", {
 
   # Caractere cheio
   expect_equal(
-    nomes_cnae(df_carac_cheio, "col1", nivel = "classe"),
-    data.frame(col1 = df_carac_cheio, nomes_cnae_classe = c("Cultivo De Cereais", "Atividades De Serviços Pessoais Não Especificadas Anteriormente"))
+    nomeia_cnae(df_carac_cheio, "col1", nivel = "classe"),
+    data.frame(col1 = df_carac_cheio, nome_cnae_classe = c("Cultivo De Cereais", "Atividades De Serviços Pessoais Não Especificadas Anteriormente"))
   )
 
   # Caractere semi
   expect_equal(
-    nomes_cnae(df_carac_semi, "col1", nivel = "classe"),
-    data.frame(col1 = df_carac_semi, nomes_cnae_classe = c("Cultivo De Cereais", "Atividades De Serviços Pessoais Não Especificadas Anteriormente"))
+    nomeia_cnae(df_carac_semi, "col1", nivel = "classe"),
+    data.frame(col1 = df_carac_semi, nome_cnae_classe = c("Cultivo De Cereais", "Atividades De Serviços Pessoais Não Especificadas Anteriormente"))
   )
 
   # Numero
   expect_equal(
-    nomes_cnae(df_num, "col1", nivel = "classe"),
-    data.frame(col1 = df_num, nomes_cnae_classe = c("Cultivo De Cereais", "Atividades De Serviços Pessoais Não Especificadas Anteriormente"))
+    nomeia_cnae(df_num, "col1", nivel = "classe"),
+    data.frame(col1 = df_num, nome_cnae_classe = c("Cultivo De Cereais", "Atividades De Serviços Pessoais Não Especificadas Anteriormente"))
   )
 })
 
@@ -66,20 +66,20 @@ test_that("nivel grupo", {
 
   # Caractere cheio
   expect_equal(
-    nomes_cnae(df_carac_cheio, "col1", nivel = "grupo"),
-    data.frame(col1 = df_carac_cheio, nomes_cnae_grupo = c("Produção De Lavouras Temporárias", "Outras Atividades De Serviços Pessoais"))
+    nomeia_cnae(df_carac_cheio, "col1", nivel = "grupo"),
+    data.frame(col1 = df_carac_cheio, nome_cnae_grupo = c("Produção De Lavouras Temporárias", "Outras Atividades De Serviços Pessoais"))
   )
 
   # Caractere semi
   expect_equal(
-    nomes_cnae(df_carac_semi, "col1", nivel = "grupo"),
-    data.frame(col1 = df_carac_semi, nomes_cnae_grupo = c("Produção De Lavouras Temporárias", "Outras Atividades De Serviços Pessoais"))
+    nomeia_cnae(df_carac_semi, "col1", nivel = "grupo"),
+    data.frame(col1 = df_carac_semi, nome_cnae_grupo = c("Produção De Lavouras Temporárias", "Outras Atividades De Serviços Pessoais"))
   )
 
   # Numero
   expect_equal(
-    nomes_cnae(df_num, "col1", nivel = "grupo"),
-    data.frame(col1 = df_num, nomes_cnae_grupo = c("Produção De Lavouras Temporárias", "Outras Atividades De Serviços Pessoais"))
+    nomeia_cnae(df_num, "col1", nivel = "grupo"),
+    data.frame(col1 = df_num, nome_cnae_grupo = c("Produção De Lavouras Temporárias", "Outras Atividades De Serviços Pessoais"))
   )
 })
 
@@ -94,20 +94,20 @@ test_that("nivel divisao", {
 
   # Caractere cheio
   expect_equal(
-    nomes_cnae(df_carac_cheio, "col1", nivel = "divisão"),
-    data.frame(col1 = df_carac_cheio, nomes_cnae_divisao = c("Agricultura, Pecuária E Serviços Relacionados", "Outras Atividades De Serviços Pessoais"))
+    nomeia_cnae(df_carac_cheio, "col1", nivel = "divisão"),
+    data.frame(col1 = df_carac_cheio, nome_cnae_divisao = c("Agricultura, Pecuária E Serviços Relacionados", "Outras Atividades De Serviços Pessoais"))
   )
 
   # Caractere semi
   expect_equal(
-    nomes_cnae(df_carac_semi, "col1", nivel = "divisão"),
-    data.frame(col1 = df_carac_semi, nomes_cnae_divisao = c("Agricultura, Pecuária E Serviços Relacionados", "Outras Atividades De Serviços Pessoais"))
+    nomeia_cnae(df_carac_semi, "col1", nivel = "divisão"),
+    data.frame(col1 = df_carac_semi, nome_cnae_divisao = c("Agricultura, Pecuária E Serviços Relacionados", "Outras Atividades De Serviços Pessoais"))
   )
 
   # Numero
   expect_equal(
-    nomes_cnae(df_num, "col1", nivel = "divisão"),
-    data.frame(col1 = df_num, nomes_cnae_divisao = c("Agricultura, Pecuária E Serviços Relacionados", "Outras Atividades De Serviços Pessoais"))
+    nomeia_cnae(df_num, "col1", nivel = "divisão"),
+    data.frame(col1 = df_num, nome_cnae_divisao = c("Agricultura, Pecuária E Serviços Relacionados", "Outras Atividades De Serviços Pessoais"))
   )
 })
 
@@ -121,13 +121,13 @@ test_that("nivel secao", {
 
   # Caractere
   expect_equal(
-    nomes_cnae(df_carac, "col1", nivel = "seção"),
-    data.frame(col1 = df_carac, nomes_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços"))
+    nomeia_cnae(df_carac, "col1", nivel = "seção"),
+    data.frame(col1 = df_carac, nome_cnae_secao = c("Agricultura, Pecuária, Produção Florestal, Pesca e AqÜIcultura", "Outras Atividades de Serviços"))
   )
 
   # erro
   expect_error(
-    nomes_cnae(df_carac_cheio, "col1", nivel = "errado"),
+    nomeia_cnae(df_carac_cheio, "col1", nivel = "errado"),
     "Por favor, escolha um n\u00edvel CNAE v\u00e1lido: subclasse, classe, grupo, divis\u00e3o ou se\u00e7\u00e3o"
   )
 })

@@ -14,13 +14,13 @@
 #'
 #' @examples
 #' df1 <- data.frame(codigos_municipios = c("5219704", "3123858", "2111532"))
-#' df2 <- codigos_municipio_uf(df1, "codigos_municipios")
+#' df2 <- traduz_municipio_uf(df1, "codigos_municipios")
 #' df2
 #'
 #' df3 <- data.frame(codigos_municipios = c(521970, 312385, 211153))
-#' df4 <- codigos_municipio_uf(df3, "codigos_municipios", add_nomes = TRUE)
+#' df4 <- traduz_municipio_uf(df3, "codigos_municipios", add_nomes = TRUE)
 #' df4
-codigos_municipio_uf <- function(tabela, campo, add_nomes = FALSE) {
+traduz_municipio_uf <- function(tabela, campo, add_nomes = FALSE) {
   col_campo <- tabela[[campo]]
 
   x <- dplyr::mutate(tabela, codigo_uf = sprintf("%s", col_campo))
@@ -33,7 +33,7 @@ codigos_municipio_uf <- function(tabela, campo, add_nomes = FALSE) {
   # Adiciona nomes
 
   if (add_nomes == TRUE) {
-    x <- nomes_uf(x, "codigo_uf")
+    x <- nomeia_uf(x, "codigo_uf")
   }
 
   # Transforma coluna output no formato do input

@@ -15,13 +15,13 @@
 #'
 #' @examples
 #' df1 <- data.frame(codigos_uf = c("11", "22", "43"))
-#' df2 <- nomes_uf(df1, "codigos_uf")
+#' df2 <- nomeia_uf(df1, "codigos_uf")
 #' df2
 #'
 #' df3 <- data.frame(codigos_uf = c(11, 22, 43))
-#' df4 <- nomes_uf(df3, "codigos_uf", nome = FALSE, sigla = TRUE)
+#' df4 <- nomeia_uf(df3, "codigos_uf", nome = FALSE, sigla = TRUE)
 #' df4
-nomes_uf <- function(tabela, campo, nome = TRUE, sigla = FALSE) {
+nomeia_uf <- function(tabela, campo, nome = TRUE, sigla = FALSE) {
   if (nome == FALSE & sigla == FALSE) {
     stop("Por favor, defina TRUE em ao menos um argumento nome ou sigla", call. = F)
   }

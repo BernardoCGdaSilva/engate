@@ -16,7 +16,7 @@ Para isso, três critérios devem ser atendidos:
 3.  A coluna do output deve estar imediatamente à direita da coluna do
     input.
 
-# códigos úteis
+# Códigos úteis
 
 ## Novas seções
 
@@ -24,4 +24,10 @@ Para isso, três critérios devem ser atendidos:
 library(devtools)
 library(testthat)
 devtools::check()
+```
+
+## Para atualizar o README
+
+``` r
+build_readme()
 ```

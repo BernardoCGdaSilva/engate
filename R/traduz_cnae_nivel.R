@@ -16,13 +16,13 @@
 #'
 #' @examples
 #' df1 <- data.frame(cnae_subclasse = c(111302, 9609201))
-#' df2 <- codigos_cnae_nivel(df1, "cnae_subclasse")
+#' df2 <- traduz_cnae_nivel(df1, "cnae_subclasse")
 #' df2
 #'
 #' df3 <- data.frame(cnae_grupo = c("011", "960"))
-#' df4 <- codigos_cnae_nivel(df3, "cnae_grupo", "grupo", "divisão", TRUE)
+#' df4 <- traduz_cnae_nivel(df3, "cnae_grupo", "grupo", "divisão", TRUE)
 #' df4
-codigos_cnae_nivel <- function(tabela, campo, nivel_input = "subclasse", nivel_output = "se\u00e7\u00e3o", add_nomes = FALSE) {
+traduz_cnae_nivel <- function(tabela, campo, nivel_input = "subclasse", nivel_output = "se\u00e7\u00e3o", add_nomes = FALSE) {
 
   # Erros
   if (!(nivel_output %in% list("classe", "grupo", "divis\u00e3o", "se\u00e7\u00e3o"))) {
@@ -98,7 +98,7 @@ codigos_cnae_nivel <- function(tabela, campo, nivel_input = "subclasse", nivel_o
   # Adiciona nomes
 
   if (add_nomes == TRUE) {
-    x <- do.call(nomes_cnae, args = list(tabela = x, campo = vetor_nome, nivel = nivel_output))
+    x <- do.call(nomeia_cnae, args = list(tabela = x, campo = vetor_nome, nivel = nivel_output))
   }
 
   return(x)

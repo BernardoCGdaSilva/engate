@@ -4,7 +4,7 @@ test_that("Input caractere", {
 
   # caracteres
   expect_equal(
-    nomes_uf(df_carac, "col1"),
+    nomeia_uf(df_carac, "col1"),
     data.frame(
       col1 = c("11", "22", "43"),
       nome_uf = c(
@@ -18,7 +18,7 @@ test_that("Input caractere", {
 
   # caracteres + nome + sigla
   expect_equal(
-    nomes_uf(df_carac, "col1", sigla = T),
+    nomeia_uf(df_carac, "col1", sigla = T),
     data.frame(
       col1 = c("11", "22", "43"),
       nome_uf = c(
@@ -33,7 +33,7 @@ test_that("Input caractere", {
 
   # caracteres - nome + sigla
   expect_equal(
-    nomes_uf(df_carac, "col1", sigla = T, nome = F),
+    nomeia_uf(df_carac, "col1", sigla = T, nome = F),
     data.frame(
       col1 = c("11", "22", "43"),
       sigla_uf = c("RO", "PI", "RS"),
@@ -43,7 +43,7 @@ test_that("Input caractere", {
 
   # caracteres - nome - sigla
   expect_error(
-    nomes_uf(df_carac, "col1", sigla = F, nome = F),
+    nomeia_uf(df_carac, "col1", sigla = F, nome = F),
     "Por favor, defina TRUE em ao menos um argumento nome ou sigla"
   )
 })
@@ -53,7 +53,7 @@ test_that("Input numero", {
 
   # numeros
   expect_equal(
-    nomes_uf(df_num, "col1"),
+    nomeia_uf(df_num, "col1"),
     data.frame(
       col1 = c(11, 22, 43),
       nome_uf = c(
@@ -67,7 +67,7 @@ test_that("Input numero", {
 
   # numeros + nome + sigla
   expect_equal(
-    nomes_uf(df_num, "col1", sigla = T),
+    nomeia_uf(df_num, "col1", sigla = T),
     data.frame(
       col1 = c(11, 22, 43),
       nome_uf = c(
@@ -82,7 +82,7 @@ test_that("Input numero", {
 
   # numeros - nome + sigla
   expect_equal(
-    nomes_uf(df_num, "col1", sigla = T, nome = F),
+    nomeia_uf(df_num, "col1", sigla = T, nome = F),
     data.frame(
       col1 = c(11, 22, 43),
       sigla_uf = c("RO", "PI", "RS"),
@@ -92,7 +92,7 @@ test_that("Input numero", {
 
   # numeros - nome - sigla
   expect_error(
-    nomes_uf(df_num, "col1", sigla = F, nome = F),
+    nomeia_uf(df_num, "col1", sigla = F, nome = F),
     "Por favor, defina TRUE em ao menos um argumento nome ou sigla"
   )
 })

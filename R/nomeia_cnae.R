@@ -13,13 +13,13 @@
 #'
 #' @examples
 #' df1 <- data.frame(codigos_cnae_subclasse = c("0111301", "4520008", "9900800"))
-#' df2 <- nomes_cnae(df1, "codigos_cnae_subclasse", "subclasse")
+#' df2 <- nomeia_cnae(df1, "codigos_cnae_subclasse", "subclasse")
 #' df2
 #'
 #' df3 <- data.frame(codigos_cnae_grupo = c(11, 452, 990))
-#' df4 <- nomes_cnae(df3, "codigos_cnae_grupo", "grupo")
+#' df4 <- nomeia_cnae(df3, "codigos_cnae_grupo", "grupo")
 #' df4
-nomes_cnae <- function(tabela, campo, nivel = "subclasse") {
+nomeia_cnae <- function(tabela, campo, nivel = "subclasse") {
 
   # Erros
   if (!(nivel %in% list("subclasse", "classe", "grupo", "divis\u00e3o", "se\u00e7\u00e3o"))) {
@@ -33,19 +33,19 @@ nomes_cnae <- function(tabela, campo, nivel = "subclasse") {
     if (nivel == "subclasse") {
       tamanho <- 7
       suporte <- suporte_cnae_subclasse
-      nome <- "nomes_cnae_subclasse"
+      nome <- "nome_cnae_subclasse"
     } else if (nivel == "classe") {
       tamanho <- 5
       suporte <- suporte_cnae_classe
-      nome <- "nomes_cnae_classe"
+      nome <- "nome_cnae_classe"
     } else if (nivel == "grupo") {
       tamanho <- 3
       suporte <- suporte_cnae_grupo
-      nome <- "nomes_cnae_grupo"
+      nome <- "nome_cnae_grupo"
     } else if (nivel == "divis\u00e3o") {
       tamanho <- 2
       suporte <- suporte_cnae_divisao
-      nome <- "nomes_cnae_divisao"
+      nome <- "nome_cnae_divisao"
     }
     vetor_tamanho <- paste0("%0", tamanho, "d")
 
@@ -58,7 +58,7 @@ nomes_cnae <- function(tabela, campo, nivel = "subclasse") {
     # caso em que o nivel seja secao
   } else {
     x <- dplyr::left_join(tabela, suporte_cnae_secao, by = rlang::set_names("cod", rlang::quo_name(campo)))
-    nome <- "nomes_cnae_secao"
+    nome <- "nome_cnae_secao"
   }
 
   # Realoca a coluna nova para depois do código

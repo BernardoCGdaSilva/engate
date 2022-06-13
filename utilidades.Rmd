@@ -1,38 +1,29 @@
 ---
-title: "Utiliades"
-author: "Bernardo C G da Silva"
-date: "23/05/2022"
-output: html_document
+title: "Utilidades para o pacote Engate"
+output: github_document
 ---
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-# Princípios
+# Contribuições
 
-O pacote deve:
-1. Ler inputs tanto numéricos quanto em caracteres;
-2. Devolver outputs no mesmo formato do input quando for condizente;
-3. Inserir o output na coluna imediatamente à direita do input.
+As funções do pacote Engate devem atender apenas a duas funções: traduzir séries de dados equivalentes através dos seus códigos e inserir os nomes dos dados baseado nos seus códigos associados.
 
-# Set Up
+Para isso, três critérios devem ser atendidos: 
 
-```{r}
+1. As funções devem aceitar códigos em formato de caractere com ou sem zeros à esquerda e número;
+2. Devem retornar, para o caso de outros códigos, uma coluna com o formato igual ao dos códigos de input;
+3. A coluna do output deve estar imediatamente à direita da coluna do input.
+
+# Códigos úteis
+
+## Novas seções
+
+```{r eval=F}
 library(devtools)
 library(testthat)
-check()
-```
-
-# Site do pacote
-
-```{r}
-# Run once to configure package to use pkgdown
-usethis::use_pkgdown()
-# Run to build the website
-pkgdown::build_site()
-
-# If you’re using GitHub, we also recommend setting up GitHub actions to automatically build and publish your site:
-usethis::use_pkgdown_github_pages()
+devtools::check()
 ```
 
